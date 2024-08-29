@@ -187,10 +187,15 @@ In a world in which Urbit is more powerful and offers a compelling, market-legib
 
 \subsection[Zenith:  UrbitChain on Cosmos \textsc{sdk}]{Zenith:  UrbitChain on Cosmos SDK}
 
-Moving the \textsc{pki} to a self-hosted, urbit-native solution is not the only option should the Urbit network want to reduce its dependency on outside networks. One standing proposal, Zenith, establishes an off-Urbit blockchain governed by the galaxy-level address space and implemented as its own L1 chain using the Cosmos \textsc{sdk}.
+Moving the \textsc{pki} to a self-hosted, urbit-native solution is not the only option should the Urbit network want to reduce its dependency on outside networks. One standing proposal, Zenith, establishes an off-Urbit blockchain governed by the galaxy-level address space and implemented as its own L2 Ethereum rollup using the Cosmos \textsc{sdk}.
 
-In terms of legibility, this pathway essentially splits the difference. The Cosmos ecosystem is smaller than Ethereum as a whole, but comes in second place on metrics for current Total Value Locked (\textsc{tvl}) \citep{CosmosTVL}.  The Cosmos ecosystem and \textsc{sdk} could give some of the benefits of a self-hosted system. For example, it would reduce the outflow of capital from the Urbit network, while still achieving some interoperability with the external world thanks to the affordances granted by Cosmos. Peg zones and the Inter-Blockchain Communication (\textsc{ibc}) protocol would enable ready access to a network of blockchain networks. These networks are likely to have more operational friction for capital flows than remaining on L1 Ethereum, but may be a valid tradeoff.
+In terms of legibility, this pathway essentially splits the difference. The Cosmos ecosystem is smaller than Ethereum as a whole, but comes in second place on metrics for current Total Value Locked (\textsc{tvl}) \citep{CosmosTVL}.  The Cosmos ecosystem and \textsc{sdk} could give some of the benefits of a self-hosted system. For example, it would reduce the outflow of capital from the Urbit network, while still achieving some interoperability with the external world thanks to the affordances granted by Cosmos. Peg zones and the Inter-Blockchain Communication (\textsc{ibc}) protocol would enable ready access to a network of blockchain networks. These networks are likely to have more operational friction for capital flows than remaining on L1 Ethereum, but may be a valid tradeoff. Additionally, the Zenith proposal makes a nod to the opportunity to use the Zenith rollup as a general purpose urbit-aware smart contracting platform, including a "Scry Oracle Contract" which would enable canonization of certain subsets of the scry namespace and create some on-chain enforcement mechanisms of the referentially transparent nature of the urbit namespace.
 
+\subsection{Mayflower: A Recolonization Effort}
+
+Also presented as an option for the future of the Azimuth PKI is a proposal under the codename "Mayflower". While there is currently a directional debate between the Zenith and Mayflower plans, due to disagreements on implementation and design of related non-fungible tokens and governing bodies, the Mayflower proposal similarly suggests use of an Ethereum L2 rollup and visions of future urbit native gas tokens and contracts. The two main distinctions at this time appear to be a preference to avoid 'rolling your own' rollup and leaning towards something like the existing Base rollup and Optimism Superchain, plus a focus on 'rezoning' urbit address space, such that more focused development will occur within the readily available 'digital land'. Proponents of this plan have noted that it neither precludes an Urbit-native chain, nor path to an Urbit specific rollup. As of writing, specific details on this plan are outstanding and in active debate. Notably, both these proposals aim towards using existing Ethereum layer 2 technology, but depending on implementation details the portability of identities between L1 and L2 is undetermined. 
+
+The auther of this piece makes no statement about the financial viability of their of these two options and notes that they both appear to recognize the illegibility of the way the \textsc{pki} is currently fractured and aim at rectifying it.  
 \subsection[Bridge the \textsc{pki} across multiple chains]{Bridge the PKI across multiple chains}
 
 \sloppy
@@ -234,13 +239,16 @@ Using Zorp's \textsc{eden} and its associated Nock prover \citep{Zorp2023}, any 
 
 In the long run, this pathway would likely lead more Urbit operators to move their Urbit ID's primary `citizenship' to Nockchain. This would occur without unnecessarily losing legibility to other networks, and retains the possibility of absorbing external capital into the Urbit network along the way.
 
-TODO: Mayflower? GroundWire?
-At the time of press, two new proposals have been fielded which may also afford a new solution to hosting the Azimuth \textsc{pki}.  Both are in a high degree of flux and it is difficult to   Mayflower
-We also note that an early design consideration of the 21e8 Bitcoin Ordinals project was to be able to host an Azimuth-like \textsc{pki} system.
 
 \section{Other Considerations for Azimuth}
 
 While Azimuth's on-chain nature is that of a public key infrastructure, a \textsc{pki} alone does not constitute a complete identity system. In fact, it is the pairing of Urbit ID with Urbit OS that presents the best opportunity to serve as a fully-fledged decentralized identity system. Whether we look at implementing W3C's standardized \textsc{did}s, or adhering to the principles of \textsc{ssi}s, not everything about Azimuth is, or should be, on-chain.
+
+\subsection{Groundwire, comets & Bitcoin ordinals}
+
+We also note that an early design consideration of the 21e8 Bitcoin Ordinals project was to be able to host an Azimuth-like \textsc{pki} system. Recent debates in the ecosystem about the Azimuth PKI, namely those between Zenith and Mayflower, have instigated discussion about alternative ways of handling identiy across the Urbit network. Groundwire is a proposal to experiment with both new PKI governance models, and to make use of the comet-level address space in a more robust way. Implementation details are still forthcoming, but inital plans are to try to prototype a Gall agent that could support a PKI on Bitcoin that would allow comets to rotate their keys (updating the current 'self-attestation' model), and make use of different non-hierarchical models for routing and peer-discovery. Additionally, instead of using the finite 'higher level' address space for spam resistance, this proposal would use mechanisms like L1 Bitcoin fee costs, or burning and timelocking coins. 
+
+As with the Zenith and Mayflower proposals, the Groundwire proposal makes statements about the governance and fundrasing directions of the Urbit project. These topics are out of scope for the focus of this article, but deserve ongoing discussion in the appropriate forums.
 
 \subsection{Illegible subnets}
 
