@@ -171,7 +171,7 @@ While this may run counter to some Urbit purists who want to avoid anything rela
 
 Improving legibility, or in other words, protecting the interoperability and extensibility of Urbit ID, does not imply loyalty to any particular chain. It simply claims that increasing legibility to the largest set of networks should be included in the objective function of Urbit ID.
 
-\section{Alternative Options for the \textsc{pki}}
+\section[{Alternative Options for the \textsc{pki}}]{Alternative Options for the PKI}
 
 How does Urbit continue to improve the utility of Azimuth? While in 2019 the options for hosting the \textsc{pki} were still limited, the technology landscape has drastically evolved in the intervening years.  Several Urbit-related blockchain projects have been proposed and explored recently which bear on how the \textsc{pki} could come to be hosted.
 
@@ -233,7 +233,7 @@ While Ethereum has made significant progress in interchain bridges and L2 rollup
 
 But if we return to the philosophical perspective, assuming we want our identities to be legible to different networks, don't we also want to modify that legibility? Just as individuals can emigrate between nation-states, it seems self-evident that we should be able to move between digital networks, bringing our self-sovereign identities with us.
 
-What is the best way to enable this portability (another shared principle/design goal for \textsc{ssi}s/\textsc{did}s) while maintaining global consistency? The reader who is familiar with Nockchain will foresee the punchline:  zero-knowledge proofs.
+What is the best way to enable this portability (another shared principle/design goal for \textsc{ssi}s/\textsc{did}s) while maintaining global consistency? The reader who is familiar with Nockchain will anticipate the punchline:  zero-knowledge proofs.
 
 Using Zorp's \textsc{eden} and its associated Nock prover \citep{Zorp2023}, any Urbit instance can prove valid computation of any `client-side' Azimuth state change and use that proof as the data to post to any given blockchain. It is likely that the `easiest' place to do that would be Nockchain. However, external legibility may incentivize these proofs to be posted elsewhere. An Azimuth contract on a subject chain could use the proof of valid Nock computation to assign ownership of an Urbit ID crypto-asset native to a given address. This would include whatever affordances native asset ownership on that chain may bestow to an Urbit operator.
 
@@ -244,11 +244,11 @@ In the long run, this pathway would likely lead more Urbit operators to move the
 
 While Azimuth's on-chain nature is that of a public key infrastructure, a \textsc{pki} alone does not constitute a complete identity system. In fact, it is the pairing of Urbit ID with Urbit OS that presents the best opportunity to serve as a fully-fledged decentralized identity system. Whether we look at implementing W3C's standardized \textsc{did}s, or adhering to the principles of \textsc{ssi}s, not everything about Azimuth is, or should be, on-chain.
 
-\subsection{Groundwire, comets & Bitcoin ordinals}
+\subsection{GroundWire, comets, and Bitcoin Ordinals}
 
-We also note that an early design consideration of the 21e8 Bitcoin Ordinals project was to be able to host an Azimuth-like \textsc{pki} system. Recent debates in the ecosystem about the Azimuth PKI, namely those between Zenith and Mayflower, have instigated discussion about alternative ways of handling identiy across the Urbit network. Groundwire is a proposal to experiment with both new PKI governance models, and to make use of the comet-level address space in a more robust way. Implementation details are still forthcoming, but inital plans are to try to prototype a Gall agent that could support a PKI on Bitcoin that would allow comets to rotate their keys (updating the current 'self-attestation' model), and make use of different non-hierarchical models for routing and peer-discovery. Additionally, instead of using the finite 'higher level' address space for spam resistance, this proposal would use mechanisms like L1 Bitcoin fee costs, or burning and timelocking coins. 
+An early design consideration of the 21e8 Bitcoin Ordinals project \citep{Ordinals} was reportedly to be able to host an Azimuth-like \textsc{pki} system, and the desire to tie Urbit's fortunes more closely to those of Bitcoin persists in segments of the Urbit community. A recent debate throughout the ecosystem about the Azimuth \textsc{pki}, namely between Zenith and Mayflower, has instigated a wide-ranging discussion about alternative ways of handling identiy across the Urbit network. GroundWire proposes to experiment with both new \textsc{pki} governance models, and to make use of the comet-level address space in a more robust way \citep{Hamilton2024}. Implementation details are still forthcoming, but the initial plan is to prototype a Gall agent to support a \textsc{pki} on Bitcoin that would allow comets to rotate their keys (updating the current `self-attestation' model), and make use of different non-hierarchical models for routing and peer-discovery. Additionally, instead of using the finite `higher level' address space for spam resistance, this proposal would use mechanisms like L1 Bitcoin fee costs, or burning and timelocking coins.
 
-As with the Zenith and Mayflower proposals, the Groundwire proposal makes statements about the governance and fundrasing directions of the Urbit project. These topics are out of scope for the focus of this article, but deserve ongoing discussion in the appropriate forums.
+As with the Zenith and Mayflower proposals, the GroundWire proposal makes statements about the governance and fundrasing directions of the Urbit project. These topics are out of scope for the focus of this article, but merit ongoing discussion in the appropriate forums.
 
 \subsection{Illegible subnets}
 
