@@ -63,7 +63,8 @@ Urbit isn't the only project working on the concept of decentralized identity. A
   \item Decentralized Identifiers
 \end{enumerate}
 
-Blockchain developer Christopher Allen coined the term `self-sovereign identity' (\textsc{ssi}) to concretize a notion of digitial decentralized identity built for individual control and self-determination \citep{Allen2016}. He noted that the evolution of online identity has passed through eras of centralized administrative control, oligarchic federated systems, and unfortunately, institutionally captured ``user-centric'' designs. The next era, designated the era of \textsc{ssi}, thankfully aims to return us to a more intuitive understanding of digital identity. \citeauthor{Allen2016} defined ten key principles for \textsc{ssi}:\footnote{The appendix contains an excerpt defining the principles more completely}.
+\noindent \sloppy
+Blockchain developer Christopher Allen coined the term `self-sovereign identity' (\textsc{ssi}) to concretize a notion of digital decentralized identity built for individual control and self-determination \citep{Allen2016}. He noted that the evolution of online identity has passed through eras of centralized administrative control, oligarchic federated systems, and unfortunately, institutionally captured ``user-centric'' designs. The next era, designated the era of \textsc{ssi}, thankfully aims to return us to a more intuitive understanding of digital identity. \citeauthor{Allen2016} defined ten key principles for \textsc{ssi}:\footnote{The appendix contains an excerpt defining the principles more completely.}
 
 \begin{tabular}{ll}
   \tabitem  Existence
@@ -192,6 +193,7 @@ In terms of legibility, this pathway essentially splits the difference. The Cosm
 
 \subsection[Bridge the \textsc{pki} across multiple chains]{Bridge the PKI across multiple chains}
 
+\sloppy
 As we consider the tradeoffs of moving the \textsc{pki}, it is worth revisiting our `sane defaults' branch in the idea maze. If \lstinline[style=inlinecode]{azimuth.eth} and with it \lstinline[style=inlinecode]{/app/azimuth.hoon}\footnote{The Jael secrets vane of Urbit OS merely subscribes for the \textsc{pki} state, rather than storing it in Arvo itself.} are just sane defaults, why not also support some sane \emph{alternatives}? One of the final Urbit precepts reminds us that ``communities are autonomous'' \citep{UrbitPrecepts}.
 
 To this end, we should use Urbit OS as the coordination technology to allow users and communities to decide with which other networks they desire to maintain legibility. As with the current \textsc{pki}'s split between L1 Ethereum and the naive rollup, so too could we allow people to move their Urbit ID from L1 Ethereum to any other chain with a viable way to post signature data.
