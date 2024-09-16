@@ -16,8 +16,8 @@
 \fancyhead{}
 \fancyfoot[L]{{\footnotesize
               %% We toggle between these:
-              Manuscript submitted for review.\\
-              % {\it Urbit Systems Technical Journal} I:1 (2024):  1–3. \\
+              % Manuscript submitted for review.\\
+              {\it Urbit Systems Technical Journal} I:2 (2024):  9–32. \\
               ~ \\
               Address author correspondence to \authorpatp.
               }}
@@ -44,13 +44,13 @@
 
 % We will adjust page numbering in final editing.
 \pagenumbering{arabic}
-\setcounter{page}{1}
+\setcounter{page}{9}
 
 \tableofcontents
 
 \section{Introduction}
 
-The nature of identity has captivated human attention since prehistory. Cave painting self-portraits and handprints reveal an early sense of `self' in even the earliest hominids. More recently, Descartes' {\emph cogito, ergo sum} laid the groundwork for modern philosophy. As we move into the digital age, the concept of `identity' continues to evolve in order to extend into online networks.
+The nature of identity has captivated human attention since prehistory. Cave painting self-portraits and handprints reveal an early sense of `self' in even the earliest hominids. More recently, Descartes' \emph{cogito, ergo sum} laid the groundwork for modern philosophy. As we move into the digital age, the concept of `identity' continues to evolve in order to extend into online networks.
 
 This article considers the concept of identity within the context of Urbit and its identity layer, Azimuth. We explore how these systems implement decentralized identity, examining their technical foundations, practical applications, and the broader implications for digital self-sovereignty. By understanding these elements, we aim to shed light on the future of identity in a decentralized world.
 
@@ -86,12 +86,12 @@ Blockchain developer Christopher Allen coined the term `self-sovereign identity'
 
 However, we contend that each of the pre-\textsc{ssi} eras has critically pulled us away from the sense of `self' that is vital to identity–the way we experience our identity in the world of atoms and the digital experiences which are becoming ingrained in our day-to-day lives.
 
-Separate from Allen's principles, W3C has presented a standard for Decentralized Identifiers (\textsc{did}s). According to ``Decentralized Identifiers (\textsc{did}s) v1.0", in part \citep{W3C2022}:
+Separate from Allen's principles, \textsc{w3c} has presented a standard for Decentralized Identifiers (\textsc{did}s). According to ``Decentralized Identifiers (\textsc{did}s) v1.0'', in part \citep{W3C2022}:
 
 \begin{quote}
 Decentralized identifiers (\textsc{did}s) are a new type of identifier that enables verifiable, decentralized digital identity. A \textsc{did} refers to any subject (e.g., a person, organization, thing, data model, abstract entity, etc.) as determined by the controller of the \textsc{did}.  \ldots{}
 
-While other parties might be used to help enable the discovery of information related to a \textsc{did}, the design enables the controller of a \textsc{did} to prove control over it without requiring permi\textsc{ssi}on from any other party. \textsc{did}s are \textsc{uri}s that associate a \textsc{did} subject with a \textsc{did} document allowing trustable interactions associated with that subject.
+While other parties might be used to help enable the discovery of information related to a \textsc{did}, the design enables the controller of a \textsc{did} to prove control over it without requiring permission from any other party. \textsc{did}s are \textsc{uri}s that associate a \textsc{did} subject with a \textsc{did} document allowing trustable interactions associated with that subject.
 \end{quote}
 
 While the Urbit project may not traditionally rely on `Earth standards,' the \textsc{did} recommendation also defines ten design goals that are informative for understanding decentralized identity.\footnote{See the appendix for a more complete excerpt explicating the design goals}
@@ -118,7 +118,7 @@ We will revisit some of these principles and design goals in the context of Azim
 
 \subsection{Defaults Matter}
 
-As \patp{wicdev-wisryt} noted of the public key infrastructure (\textsc{pki}) idea maze (ref pcmonk piece), the long history of \textsc{pki}s largely splits between being `decentralized and unused' or `centralized and easy to subject oneself to'.  \patp{wicdev-wisryt} explored this idea maze along the branches of global consistency, permanence, and self-ownership, to which we add a fourth branch: sane defaults.
+As \patp{wicdev-wisryt} noted of the public key infrastructure (\textsc{pki}) idea maze (see \citet{Monk2024}, pp. 1–7 in this issue), the long history of \textsc{pki}s largely splits between being `decentralized and unused' or `centralized and easy to subject oneself to'.  \patp{wicdev-wisryt} explored this idea maze along the branches of global consistency, permanence, and self-ownership, to which we add a fourth branch: sane defaults.
 
 \textsc{pgp}, \textsc{gpg}, and Web of Trust solutions have existed for decades but are used by effectively nobody, and in some sense can be dismissed due to a lack of sane defaults. One could argue the shortcoming of these systems is a lack of global consistency, but in practice global consistency is a necessary but not sufficient condition for a self-sovereign identity. If the system does not also provide sane defaults the global consistency remains an illegible mess to the typical user. The Web of Trust and similar solutions may be glossed over as demonstrably insufficient.
 
@@ -141,15 +141,15 @@ The need to place the \textsc{pki} on a distributed ledger with global consensus
 
 \subsection{Layer 1 IDs on the Ethereum network}
 
-Azimuth's deployment on Ethereum was one of the first uses of the \textsc{erc}-721 standard \citep{ERC721}. It is implemented across two core contracts: Azimuth, which holds the registry of identity ownership, and Ecliptic, which defines the business logic for updating the state of the registry. To this day, these contracts serve as one of the most technically `useful' ERC-721s on the Ethereum network, powering the peer-to-peer interactions of thousands of nodes (also known as urbit ships) in an encrypted off-chain network. As an ERC-721, Urbit ID experienced a significant increase in valuation during the NFT boom of 2021, with the market cap of address space breaking \$2B at its peak.
+Azimuth's deployment on Ethereum was one of the first uses of the \textsc{erc}-721 standard \citep{ERC721}. It is implemented across two core contracts: Azimuth, which holds the registry of identity ownership, and Ecliptic, which defines the business logic for updating the state of the registry. To this day, these contracts serve as one of the most technically `useful' \textsc{erc}-721s on the Ethereum network, powering the peer-to-peer interactions of thousands of nodes (also known as urbit ships) in an encrypted off-chain network. As an \textsc{erc}-721, Urbit ID experienced a significant increase in valuation during the \textsc{nft} boom of 2021, with the market cap of address space breaking \$2B at its peak.
 
-However, the core downside of Azimuth's presence on Ethereum should not be understated." In exchange for the benefits of NFT hype cycles, Urbit users must pay a tax to the Ethereum network in the form of gas fees. This interaction is particularly expensive because the original versions of Ecliptic required all state transition computations to occur on-chain. While this means Azimuth inherits the security benefits of Ethereum's global consensus model, there is a contention that it fundamentally extracts value from the Urbit network and deposits it into Ethereum in an unnecessary exchange.
+However, the core downside of Azimuth's presence on Ethereum should not be understated. In exchange for the benefits of \textsc{nft} hype cycles, Urbit users must pay a tax to the Ethereum network in the form of gas fees. This interaction is particularly expensive because the original versions of Ecliptic required all state transition computations to occur on-chain. While this means Azimuth inherits the security benefits of Ethereum's global consensus model, there is a contention that it fundamentally extracts value from the Urbit network and deposits it into Ethereum in an unnecessary exchange.
 
 \subsection{Layer 2 IDs on the naive rollup}
 
 The transaction costs on Ethereum were so great that, at times, it cost over \$200 worth of \textsc{eth} just to get on the network. For a budding distributed system project, such costs can be unbearable. Thus, the solution to the `gas crisis' was introduced \citep{Paprocki2021}: a custom `naive' rollup. The key feature of the naive rollup is that, instead of paying Ethereum miners (now validators) to verify the state transitions of Azimuth, each Urbit node can validate those transitions themselves. This again brings us back to the idea of sane defaults in a decentralized or distributed network. 
 
-That is, in running one's Urbit instance, the canonical ``Azimuth" is nothing more than a sane default. This is trivially exemplified by the fact that one could run a fake ship network locally and act as any Urbit ID one chose, or even deploy an alternative version of Azimuth onto mainnet Ethereum. However, because everyone else is likely operating on the default version of \lstinline[style=inlinecode]{/app/azimuth}, which assumes \lstinline[style=inlinecode]{azimuth.eth} as The One True \textsc{pki}, any of one's potential peers will discard one's packets as invalid. The Urbit network will ignore an unsignable interloper. Whether or not the Urbit network pays the Ethereum network for state transition computation, it remains true that Urbit's off-chain interactions are voluntary and governed by sane defaults.
+That is, in running one's Urbit instance, the canonical ``Azimuth'' is nothing more than a sane default. This is trivially exemplified by the fact that one could run a fake ship network locally and act as any Urbit ID one chose, or even deploy an alternative version of Azimuth onto mainnet Ethereum. However, because everyone else is likely operating on the default version of \lstinline[style=inlinecode]{/app/azimuth}, which assumes \lstinline[style=inlinecode]{azimuth.eth} as The One True \textsc{pki}, any of one's potential peers will discard one's packets as invalid. The Urbit network will ignore an unsignable interloper. Whether or not the Urbit network pays the Ethereum network for state transition computation, it remains true that Urbit's off-chain interactions are voluntary and governed by sane defaults.
 
 \subsection{When to Use Global Consensus}
 
@@ -179,23 +179,24 @@ How does Urbit continue to improve the utility of Azimuth? While in 2019 the opt
 
 The most `philosophically straightforward' answer would be for Urbit to self-host its \textsc{pki}. While this requires further technical development, it is conceptually tractable and the \lstinline[style=inlinecode]{%chain} project, primarily executed by \patp{tiller-tolbus} and \patp{midsum-salrux} as a skunkworks effort, has shown initial successes on an Urbit-native blockchain. This option could make use of identity-backed consensus models, and would be the most direct pathway to the Urbit network not having to pay a `tax' to another network for its consensus mechanism. In a sense, this is the most `independent' or `self-contained' option. However, it would likely result in decreased capital access and practical legibility to external networks.
 
-While reasonable minds may differ on the net benefit of Urbit's proximity to the Ethereum network's capital pools, there is no doubt that such proximity has had material impacts on address space valuation. This includes the \textasciitilde\$33K peak for star-level identities. Distancing Urbit ID from Ethereum by moving the \textsc{pki} to a self-hosted network would limit the opportunity to access this capital by increasing the barriers to exchange.
+While reasonable minds may differ on the net benefit of Urbit's proximity to the Ethereum network's capital pools, there is no doubt that such proximity has materially impacted on address space valuation. This includes the \textasciitilde\$33,000 peak for star-level identities. Distancing Urbit ID from Ethereum by moving the \textsc{pki} to a self-hosted network would limit the opportunity to access this capital by increasing the barriers to exchange.
 
 Moving the \textsc{pki} in this way would also decrease interoperability and extensibility by making it harder for the Ethereum network to access and validate data about ownership of Urbit IDs. Technically speaking, this constraint could be reduced by self-hosted \textsc{rpc} endpoints of \lstinline[style=inlinecode]{%chain} or Azimuth state that could be accessed over \textsc{http}. However, the more prominent issue would be the coordination constraint it would generate. If the \textsc{pki} moves, what motivation do members of the Ethereum Network have to bother with Urbit \textsc{rpc} endpoints instead of just staying within the Ethereum tooling ecosystem?
 
-In a world in which Urbit is more powerful and offers a compelling, market-legible alternative to the Ethereum virtual machine, one can see the draw of a bootstrapped \lstinline[style=inlinecode]{%chain}. However, the \textasciitilde 70K \textsc{usd} per year in gas fees that Urbit users collectively pay to maintain the \textsc{pki} on Ethereum seems worth the legibility it affords.
+In a world in which Urbit is more powerful and offers a compelling, market-legible alternative to the Ethereum virtual machine, one can see the draw of a bootstrapped \lstinline[style=inlinecode]{%chain}. However, the \textasciitilde \$70,000 per year in gas fees that Urbit users collectively pay to maintain the \textsc{pki} on Ethereum seems worth the legibility it affords.
 
 \subsection[Zenith:  UrbitChain on Cosmos \textsc{sdk}]{Zenith:  UrbitChain on Cosmos SDK}
 
 Moving the \textsc{pki} to a self-hosted, urbit-native solution is not the only option should the Urbit network want to reduce its dependency on outside networks. One standing proposal, Zenith, establishes an off-Urbit blockchain governed by the galaxy-level address space and implemented as its own L2 Ethereum rollup using the Cosmos \textsc{sdk}.
 
-In terms of legibility, this pathway essentially splits the difference. The Cosmos ecosystem is smaller than Ethereum as a whole, but comes in second place on metrics for current Total Value Locked (\textsc{tvl}) \citep{CosmosTVL}.  The Cosmos ecosystem and \textsc{sdk} could give some of the benefits of a self-hosted system. For example, it would reduce the outflow of capital from the Urbit network, while still achieving some interoperability with the external world thanks to the affordances granted by Cosmos. Peg zones and the Inter-Blockchain Communication (\textsc{ibc}) protocol would enable ready access to a network of blockchain networks. These networks are likely to have more operational friction for capital flows than remaining on L1 Ethereum, but may be a valid tradeoff. Additionally, the Zenith proposal makes a nod to the opportunity to use the Zenith rollup as a general purpose urbit-aware smart contracting platform, including a "Scry Oracle Contract" which would enable canonization of certain subsets of the scry namespace and create some on-chain enforcement mechanisms of the referentially transparent nature of the urbit namespace.
+In terms of legibility, this pathway essentially splits the difference. The Cosmos ecosystem is smaller than Ethereum as a whole, but comes in second place on metrics for current Total Value Locked (\textsc{tvl}) \citep{CosmosTVL}.  The Cosmos ecosystem and \textsc{sdk} could give some of the benefits of a self-hosted system. For example, it would reduce the outflow of capital from the Urbit network, while still achieving some interoperability with the external world thanks to the affordances granted by Cosmos. Peg zones and the Inter-Blockchain Communication (\textsc{ibc}) protocol would enable ready access to a network of blockchain networks. These networks are likely to have more operational friction for capital flows than remaining on L1 Ethereum, but may be a valid tradeoff. Additionally, the Zenith proposal makes a nod to the opportunity to use the Zenith rollup as a general purpose urbit-aware smart contracting platform, including a ``Scry Oracle Contract'' which would enable canonization of certain subsets of the scry namespace and create some on-chain enforcement mechanisms of the referentially transparent nature of the urbit namespace.
 
 \subsection{Mayflower: A Recolonization Effort}
 
-Also presented as an option for the future of the Azimuth PKI is a proposal under the codename "Mayflower". While there is currently a directional debate between the Zenith and Mayflower plans, due to disagreements on implementation and design of related non-fungible tokens and governing bodies, the Mayflower proposal similarly suggests use of an Ethereum L2 rollup and visions of future urbit native gas tokens and contracts. The two main distinctions at this time appear to be a preference to avoid 'rolling your own' rollup and leaning towards something like the existing Base rollup and Optimism Superchain, plus a focus on 'rezoning' urbit address space, such that more focused development will occur within the readily available 'digital land'. Proponents of this plan have noted that it neither precludes an Urbit-native chain, nor path to an Urbit specific rollup. As of writing, specific details on this plan are outstanding and in active debate. Notably, both these proposals aim towards using existing Ethereum layer 2 technology, but depending on implementation details the portability of identities between L1 and L2 is undetermined. 
+Also presented as an option for the future of the Azimuth \textsc{pki} is a proposal under the codename ``Mayflower''. While there is currently a directional debate between the Zenith and Mayflower plans, due to disagreements on implementation and design of related non-fungible tokens and governing bodies, the Mayflower proposal similarly suggests use of an Ethereum L2 rollup and visions of future urbit native gas tokens and contracts. The two main distinctions at this time appear to be a preference to avoid `rolling your own' rollup and leaning towards something like the existing Base rollup and Optimism Superchain, plus a focus on `rezoning' urbit address space, such that more focused development will occur within the readily available `digital land'. Proponents of this plan have noted that it neither precludes an Urbit-native chain, nor path to an Urbit specific rollup. As of writing, specific details on this plan are outstanding and in active debate. Notably, both these proposals aim towards using existing Ethereum layer 2 technology, but depending on implementation details the portability of identities between L1 and L2 is undetermined. 
 
-The auther of this piece makes no statement about the financial viability of their of these two options and notes that they both appear to recognize the illegibility of the way the \textsc{pki} is currently fractured and aim at rectifying it.  
+The auther of this piece makes no statement about the financial viability of their of these two options and notes that they both appear to recognize the illegibility of the way the \textsc{pki} is currently fractured and aim at rectifying it.
+
 \subsection[Bridge the \textsc{pki} across multiple chains]{Bridge the PKI across multiple chains}
 
 \sloppy
@@ -212,10 +213,11 @@ Considering this path, it is worthwhile to elaborate on how the current L2 solut
   \item  Ecliptic posts \emph{time-stamped} signature data to the Ethereum chain concerning the change of ownership of a point owned on layer 2.  The default Urbit client reviews and validates the state change before applying the change to the Urbit's own \lstinline[style=inlinecode]{/app/azimuth}.
 \end{itemize}
 
-This mechanism means that these points are still cryptographically controlled for purposes of anyone running the default Urbit OS or relevant code (namely, \lstinline[style=inlinecode]{/app/eth-watcher}, \lstinline[style=inlinecode]{/lib/naive.hoon}, \lstinline[style=inlinecode]{/app/azimuth-tracker} and \lstinline[style=inlinecode]{/app/azimuth}), and it is easy to imagine how this same mechanism could be used to support other chains as hosts for portions of the \textsc{pki}:
+\sloppy
+This mechanism means that these points are still cryptographically controlled for purposes of anyone running the \mbox{default} Urbit OS or relevant code (namely, \lstinline[style=inlinecode]{/app/eth-watcher}, \lstinline[style=inlinecode]{/lib/naive.hoon}, \lstinline[style=inlinecode]{/app/azimuth-} \lstinline[style=inlinecode]{tracker} and \lstinline[style=inlinecode]{/app/azimuth}), and it is easy to imagine how this same mechanism could be used to support other chains as hosts for portions of the \textsc{pki}:
 
 \begin{enumerate}
-  \item  Define a holding address for the \textsc{erc}-721 on mainnet ethereum for other host chains (i.e. sending the L1 NFT to \lstinline[style=inlinecode]{0x2222...} indicates sending the ownership to bitcoin).
+  \item  Define a holding address for the \textsc{erc}-721 on mainnet ethereum for other host chains (i.e. sending the L1 \textsc{nft} to \lstinline[style=inlinecode]{0x2222...} indicates sending the ownership to Bitcoin).
   \item  Implement a watcher for the subject chain that looks for posted signature data.
   \item  Update and/or add to the relevant Urbit OS code for client side validation of data posted to the new chain.
 \end{enumerate}
@@ -242,7 +244,7 @@ In the long run, this pathway would likely lead more Urbit operators to move the
 
 \section{Other Considerations for Azimuth}
 
-While Azimuth's on-chain nature is that of a public key infrastructure, a \textsc{pki} alone does not constitute a complete identity system. In fact, it is the pairing of Urbit ID with Urbit OS that presents the best opportunity to serve as a fully-fledged decentralized identity system. Whether we look at implementing W3C's standardized \textsc{did}s, or adhering to the principles of \textsc{ssi}s, not everything about Azimuth is, or should be, on-chain.
+While Azimuth's on-chain nature is that of a public key infrastructure, a \textsc{pki} alone does not constitute a complete identity system. In fact, it is the pairing of Urbit ID with Urbit OS that presents the best opportunity to serve as a fully-fledged decentralized identity system. Whether we look at implementing \textsc{w3c}'s standardized \textsc{did}s, or adhering to the principles of \textsc{ssi}s, not everything about Azimuth is, or should be, on-chain.
 
 \subsection{GroundWire, comets, and Bitcoin Ordinals}
 
@@ -296,10 +298,10 @@ This appendix serves as a reference for the more complete excerpts of referenced
 
 \subsection{The Path to Self-Sovereign Identity}
 
-The principles of \textsc{ssi} are as follows (``Ten Principles of Self-Sovereign Identity," 26 April 2016), all quoted:
+The principles of \textsc{ssi} are as follows (``Ten Principles of Self-Sovereign Identity,'' 26 April 2016), all quoted:
 
 \begin{quote}
-  A number of different people have written about the principles of identity. Kim Cameron wrote one of the earliest ``Laws of Identity'', while the aforementioned Respect Network policy and W3C Verifiable Claims Task Force \textsc{faq} offer additional perspectives on digital identity. This section draws on all of these ideas to create a group of principles specific to self-sovereign identity. As with the definition itself, consider these principles a departure point to provoke a discussion about what’s truly important.
+  A number of different people have written about the principles of identity. Kim Cameron wrote one of the earliest ``Laws of Identity'', while the aforementioned Respect Network policy and \textsc{w3c} Verifiable Claims Task Force \textsc{faq} offer additional perspectives on digital identity. This section draws on all of these ideas to create a group of principles specific to self-sovereign identity. As with the definition itself, consider these principles a departure point to provoke a discussion about what’s truly important.
 
   These principles attempt to ensure the user control that’s at the heart of self-sovereign identity. However, they also recognize that identity can be a double-edged sword — usable for both beneficial and maleficent purposes. Thus, an identity system must balance transparency, fairness, and support of the commons with protection for the individual.
 \end{quote}
@@ -319,7 +321,7 @@ The principles of \textsc{ssi} are as follows (``Ten Principles of Self-Sovereig
 
 \subsection{Decentralized Identifiers (\textsc{did}s) v1.0}
 
-The design goals of \textsc{did}s are as follows (Section 1.2, ``Version 1.0 of the W3C Recommendation 19 July 2022''), all quoted:
+The design goals of \textsc{did}s are as follows (Section 1.2, ``Version 1.0 of the \textsc{w3c} Recommendation 19 July 2022''), all quoted:
 
 \begin{enumerate}
   \item  \sloppy \textbf{Decentralization}. Eliminate the requirement for centralized authorities or single point failure in identifier management, including the registration of globally unique identifiers, public verification keys, services, and other information.
